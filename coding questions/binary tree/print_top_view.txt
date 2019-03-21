@@ -1,0 +1,47 @@
+void topview(Node* root) 
+{ 
+	if(root==NULL) 
+	return; 
+	queue< pair<Node*,int> >q; 
+	map<int,int> m; 
+	int hd=0; 
+	root->hd=hd; 
+	
+	// push node and horizontal distance to queue 
+	q.push(make_pair(root,hd) ); 
+	
+	cout<< "The top view of the tree is : \n"; 
+	
+	while(q.size()) 
+	{ 
+	      	pair<Node*,int> p;
+      		p=q.front();
+      		q.pop();
+      		root=p.first;
+		hd=p.second; 
+		
+		// count function returns 1 if the container 
+		// contains an element whose key is equivalent 
+		// to hd, or returns zero otherwise. 
+		if(m.count(hd)==0) 
+			m[hd]=root->data; 
+		if(root->left) 
+		{  
+			q.push( make_pair(root->left,hd-1) ); 
+		} 
+		if(root->right) 
+		{  
+			q.push(make_pair(root->right,hd+1) ); 
+		} 
+		
+	} 
+	
+	
+	
+	for(auto i=m.begin();i!=m.end();i++) 
+	{ 
+		cout<<i->second<<" "; 
+	} 
+	
+} 
+
